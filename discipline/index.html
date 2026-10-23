@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Discipline · Psychology Quiz</title>
+<meta name="description" content="Interactive psychology practice questions with instant explanations.">
+<meta name="theme-color" content="#ecebf6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#121029" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d1a4d'/%3E%3Cpath d='M32 12c-4 6-12 6-14 14s4 10 2 16 6 10 12 4c6 6 14 2 12-4s4-8 2-16-10-8-14-14z' fill='%23ffc23d'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<div class="ink-bg" aria-hidden="true"></div>
+<div id="app" class="app"></div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<canvas id="confetti" class="confetti" aria-hidden="true"></canvas>
+<noscript><p style="padding:24px">This quiz needs JavaScript turned on.</p></noscript>
+<script>window.QUIZZES=[];function Q(x){x.questions.forEach(function(q){if(q.a==null)q.a=0});window.QUIZZES.push(x)}</script>
+<script>window.QUIZ_ONLY="discipline";</script>
+<script src="../data/discipline.js"></script>
+<script src="../app.js"></script>
+</body>
+</html>
