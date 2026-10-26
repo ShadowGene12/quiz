@@ -25,6 +25,7 @@ const store = {
 
 /* ---------- Theme + sound ---------- */
 let theme = store.get("theme", "system");
+function effectiveTheme() { return theme === "system" ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light") : theme; }
 function applyTheme() {
   if (theme === "system") document.documentElement.removeAttribute("data-theme");
   else document.documentElement.setAttribute("data-theme", theme);
@@ -163,7 +164,7 @@ function stopTimer() { if (timer) { clearInterval(timer); timer = null; } }
 
 /* ---------- Shell ---------- */
 function topbar(extra) {
-  const themeIcon = theme === "dark" ? ICON.moon : theme === "light" ? ICON.sun : ICON.auto;
+  const eff = effectiveTheme();
   return `<header class="topbar">
     <button class="brand" data-act="home" aria-label="All topics">
       <span class="brand-mark" style="color:var(--gold)">${ICON.mark}</span>
@@ -171,7 +172,7 @@ function topbar(extra) {
     </button>
     <div class="icon-row">${extra || ""}
       <button class="icon-btn" data-act="sound" aria-label="${soundOn ? "Mute sounds" : "Turn sounds on"}" title="Sound">${soundOn ? ICON.soundOn : ICON.soundOff}</button>
-      <button class="icon-btn" data-act="theme" aria-label="Theme: ${theme}" title="Theme: ${theme}">${themeIcon}</button>
+      <button class="theme-pill" data-act="theme" aria-label="Switch to ${eff === "dark" ? "light" : "dark"} mode"><span class="tp ${eff === "light" ? "on" : ""}">${ICON.sun}<span>Light</span></span><span class="tp ${eff === "dark" ? "on" : ""}">${ICON.moon}<span>Dark</span></span></button>
     </div>
   </header>`;
 }
@@ -481,7 +482,7 @@ app.addEventListener("click", e => {
   if (!b) return;
   const act = b.dataset.act;
   if (act === "home") goHome();
-  else if (act === "theme") { theme = theme === "system" ? "dark" : theme === "dark" ? "light" : "system"; store.set("theme", theme); applyTheme(); rerender(); }
+  else if (act === "theme") { theme = effectiveTheme() === "dark" ? "light" : "dark"; store.set("theme", theme); applyTheme(); rerender(); }
   else if (act === "sound") { soundOn = !soundOn; store.set("sound", soundOn); rerender(); if (soundOn) beep("good"); }
   else if (act === "begin") {
     const name = (document.getElementById("nameIn").value || "").trim();

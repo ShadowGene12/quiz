@@ -1,7 +1,8 @@
 """Builds index.html (all topics) and one folder per topic (its own link) from data/*.js."""
 import os, html, re
 ORDER = ["peer-pressure","time-management","eating-disorders","learning-disability","stress","abuse","loneliness",
-         "social-media-addiction","intelligence","development","focus","discipline","mind-body","addiction","ocd","depression"]
+         "social-media-addiction","intelligence","development","focus","discipline","mind-body","addiction","ocd","depression",
+         "listening-reading","mental-strength","habits","environment","sleep-anxiety","ai-influence","social-media-thinking","metabolism-nervous-system","trauma"]
 extra = sorted(f[:-3] for f in os.listdir("data") if f.endswith(".js") and f[:-3] not in ORDER)
 ids = [i for i in ORDER if os.path.exists(f"data/{i}.js")] + extra
 tpl = open("index.template.html").read()

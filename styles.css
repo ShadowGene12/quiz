@@ -246,3 +246,12 @@ h1,h2,h3,p{margin:0}
 .screen{animation:fadein .35s ease both}
 @keyframes fadein{from{opacity:0;transform:translateY(6px)}}
 @media (prefers-reduced-motion: reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+
+/* Labelled light/dark switch */
+.theme-pill{display:flex;align-items:center;gap:2px;padding:3px;border-radius:12px;border:1px solid var(--line);background:var(--card);cursor:pointer}
+.theme-pill .tp{display:flex;align-items:center;gap:5px;padding:6px 9px;border-radius:9px;font-size:.8rem;font-weight:700;color:var(--muted);transition:background .2s,color .2s}
+.theme-pill .tp svg{width:15px;height:15px}
+.theme-pill .tp.on{background:var(--plate-bg);color:var(--plate-fg)}
+.theme-pill:hover .tp:not(.on){color:var(--text)}
+@media (max-width:360px){.theme-pill .tp span{display:none}}
+@media (max-width:420px){.brand-text span{display:none}.brand-text b{white-space:nowrap}}
